@@ -14,7 +14,7 @@ sales <- c(1585, 1819, 1647, 1496, 921, 1278, 1810, 1987, 1612, 1413)
 price <- c(12.50, 10.00, 9.95, 11.50, 12.00, 10.00, 8.00, 9.00, 9.50, 12.50)
 
 # making data frame
-df <- data.frame(sales, price)
+df <- data.frame(price, sales)
 
 # print summary
 str(df)
@@ -26,12 +26,12 @@ plot(df)
 # coefficient would be negative in sign.
 
 # Solution (b):
-lr_model <- lm(df$price ~ df$sales)
+lr_model <- lm(df$sales ~ df$price)
 
 summary(lr_model)$coefficient
 
-# b0_hat (intercept) = 15.373424692
-# b1_hat (slope) =  -0.003133623
+# b0_hat (intercept) = 2832.8734
+# b1_hat (slope) =  -121.5887
 
 abline(lr_model, col='seagreen', lwd = 2)
 
@@ -39,17 +39,18 @@ abline(lr_model, col='seagreen', lwd = 2)
 # Solution (c):
 r_xy <- cor(df$sales, df$price); r_xy # -0.6172626
 
-b1_hat <- -0.003133623
+b1_hat <- -121.5887
 
-sx <- sd(df$sales); sx
-sy <- sd(df$price); sy
+sx <- sd(df$price); sx
+sy <- sd(df$sales); sy
 
 new_data <- b1_hat * (sx / sy); new_data # -0.6172626
 
 # Solution (d):
 
-sales_13 <- (13 - 15.373424692) / b1_hat; sales_13
+b0_hat = 2832.8734 
 
+sales_13 <- b0_hat + (b1_hat * 13); sales_13
 
 
 # Solution (e):
@@ -63,16 +64,16 @@ price_bdt
 par(mfrow = c(2, 1))
 
 # draw original figure
-plot(df, main = 'Point Cloud of Sales and Price (EUR)', ylab = 'Price (EUR)')
+plot(df, main = 'Point Cloud of Sales and Price (EUR)', xlab = 'Price (EUR)')
 abline(lr_model, col='seagreen', lwd = 2)
 
 
 # draw with converted price
-df_bdt <- data.frame(sales, price_bdt)
-plot(df_bdt, main = 'Point Cloud of Sales and Price (BDT)', ylab = 'Price(BDT)')
+df_bdt <- data.frame(price_bdt, sales)
+plot(df_bdt, main = 'Point Cloud of Sales and Price (BDT)', xlab = 'Price(BDT)')
 
 # model with converted data
-lr_model_bdt <- lm(df_bdt$price_bdt ~ df_bdt$sales)
+lr_model_bdt <- lm(df_bdt$sales ~ df_bdt$price_bdt)
 abline(lr_model_bdt, col='seagreen', lwd = 2)
 
 rxy_bdt <- cor(df_bdt$sales, df_bdt$price_bdt); rxy_bdt     # -0.6172626
