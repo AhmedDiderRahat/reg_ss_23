@@ -3,6 +3,8 @@
 #   Date: 18th May 2023                                                                       #
 ###############################################################################################
 
+# # Source: https://github.com/AhmedDiderRahat/reg_ss_23/blob/main/Assignemnts/assignment-03/RegSSE3.pdf
+
 
 # Preparations
 rm(list = ls(all.names = TRUE))
@@ -88,7 +90,7 @@ proved_fun(X = living.space, Y = netrent, 'Living Space')
 # Exercise 2
 
 # set sample size n = 500
-n = 500
+n = 10000
 
 set.seed(123)
 
@@ -155,7 +157,7 @@ par(mfrow=c(1,1))
 
 # Exercise 3
 
-n = 10
+n = 500
 
 set.seed(123)
 
