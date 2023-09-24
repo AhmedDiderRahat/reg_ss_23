@@ -43,4 +43,10 @@ curve(b2_hat[1] + b2_hat[2]*x +b2_hat[3]*x^2,
       col="darkblue",
       lwd = 3, add=TRUE)
 
+summary(m3)
 
+y3_hat <- predict(m3)
+
+rss3 <- sum((y3_hat - netrent)^2)
+
+sigma3 <- sqrt(rss3/95); sigma3

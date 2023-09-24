@@ -14,7 +14,7 @@ rm(list = ls(all.names = TRUE))
 
 
 # set directory: 
-# setwd('C:\\Users\\DELL\\Desktop\\Summer 2023\\RegDS23\\reg_ss_23')
+setwd('C:\\Users\\DELL\\Desktop\\Summer 2023\\RegDS23\\reg_ss_23')
 
 # load Munich rent data set
 rent <- read.csv('Dataset/MunichRent2003.csv')
@@ -41,7 +41,7 @@ prediction_fun <- function(X, Y, x_lab){
   
   abline(lm_obj, col = 'seagreen', lwd = 3)
   
-  e_hat <- (y_hat - netrent)
+  e_hat <- (y_hat - Y)
   
   plot(y_hat, e_hat)
   
@@ -157,7 +157,7 @@ par(mfrow=c(1,1))
 
 # Exercise 3
 
-n = 500
+n = 10
 
 set.seed(123)
 
@@ -326,7 +326,8 @@ lm1 <- lm(log(Y) ~ X1)
 summary(lm1)
 
 plot(X1, log(Y))
-curve(predict(model, newdata = data.frame(X = x)), add = TRUE, col = "red")
+
+#curve(predict(model, newdata = data.frame(X = x)), add = TRUE, col = "red")
 
 b_hat1 <- coef(lm1); b_hat1
 
@@ -339,8 +340,10 @@ lm2 <- lm(log(Y) ~ X1+X2)
 
 b_hat2 <- coef(lm2); b_hat2
 
-a(b_hat2[1] + b_hat2[2]*X1, b_hat2[3]*X2,   
+x <- X2
+curve(b_hat2[1] + b_hat2[2]*x, b_hat2[3]*x,   
       col="darkblue",
       lwd = 3, add=TRUE)
 
 abline(lm2)
+
